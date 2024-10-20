@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación Web con Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Aplicación de Registro</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="mostrarSeccion('inscripcion')">Inscripción en curso</a></li>
+                <li><a href="#" onclick="mostrarSeccion('usuarios')">Registro de usuarios</a></li>
+                <li><a href="#" onclick="mostrarSeccion('productos')">Registro de productos</a></li>
+                <li><a href="#" onclick="mostrarSeccion('libros')">Registro de libros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Formulario de inscripción en curso -->
+    <section id="inscripcion" class="seccion-formulario">
+        <h2>Inscripción en Curso</h2>
+        <form action="/inscripcion" method="POST">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos" required>
+            <label for="curso">Curso:</label>
+            <select id="curso" name="curso">
+                <option value="matematicas">Matemáticas</option>
+                <option value="fisica">Física</option>
+                <option value="programacion">Programación</option>
+            </select>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <!-- Formulario de registro de usuarios -->
+    <section id="usuarios" class="seccion-formulario">
+        <h2>Registro de Usuarios</h2>
+        <form action="/usuarios" method="POST">
+            <label for="nombre-usuario">Nombre:</label>
+            <input type="text" id="nombre-usuario" name="nombre-usuario" required>
+            <label for="apellidos-usuario">Apellidos:</label>
+            <input type="text" id="apellidos-usuario" name="apellidos-usuario" required>
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Registrar</button>
+        </form>
+    </section>
+
+    <!-- Formulario de registro de productos -->
+    <section id="productos" class="seccion-formulario">
+        <h2>Registro de Productos</h2>
+        <form action="/productos" method="POST">
+            <label for="producto">Producto:</label>
+            <input type="text" id="producto" name="producto" required>
+            <label for="categoria">Categoría:</label>
+            <select id="categoria" name="categoria">
+                <option value="electronica">Electrónica</option>
+                <option value="ropa">Ropa</option>
+                <option value="alimentos">Alimentos</option>
+            </select>
+            <label for="existencia">Existencia:</label>
+            <input type="number" id="existencia" name="existencia" required>
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" name="precio" step="0.01" required>
+            <button type="submit">Registrar Producto</button>
+        </form>
+    </section>
+
+    <!-- Formulario de registro de libros -->
+    <section id="libros" class="seccion-formulario">
+        <h2>Registro de Libros</h2>
+        <form action="/libros" method="POST">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" required>
+            <label for="autor">Autor:</label>
+            <input type="text" id="autor" name="autor" required>
+            <label for="resumen">Resumen:</label>
+            <textarea id="resumen" name="resumen" required></textarea>
+            <label for="medio">Medio:</label>
+            <input type="radio" id="fisico" name="medio" value="fisico" required>
+            <label for="fisico">Físico</label>
+            <input type="radio" id="magnetico" name="medio" value="magnetico" required>
+            <label for="magnetico">Magnético</label>
+            <button type="submit">Registrar Libro</button>
+        </form>
+    </section>
+
+    <!-- JavaScript para mostrar/ocultar secciones -->
+    <script>
+        // Ocultar todas las secciones excepto la seleccionada
+        function mostrarSeccion(seccionId) {
+            const secciones = document.querySelectorAll('.seccion-formulario');
+            secciones.forEach(seccion => {
+                seccion.style.display = 'none';
+            });
+            document.getElementById(seccionId).style.display = 'block';
+        }
+
+        // Ocultar todas las secciones al cargar la página
+        window.onload = function() {
+            mostrarSeccion('inscripcion'); // Mostrar la primera sección por defecto
+        };
+    </script>
+
+</body>
+</html>
